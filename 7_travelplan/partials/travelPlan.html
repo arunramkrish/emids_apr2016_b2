@@ -1,0 +1,36 @@
+<div>
+    <h1>Travel Plans</h1>
+    <table>
+    <th>
+        <tr>
+            <td>Title</td>
+            <td>Date</td>
+            <td>Summary</td>
+        </tr>
+        </th>
+    <tr ng-repeat="t in travelPlans">
+        <td><a ng-href="#/travelPlan/{{t.title}}">{{t.title}}</a></td>
+        <td>{{t.date}}</td>
+        <td>{{t.summary}}</td>
+    </tr>
+    </table>
+    <div>
+        <input type="button" value="Add Travel" ng-click="addTravelPlan()"/>
+    </div>
+    <div ng-show="showTravelForm">
+        <form>
+            <div>
+                <span>Title</span><input type="text" ng-model="travel.title"/>
+            </div>
+            <div>
+                <span>Date</span><input type="date" ng-model="travel.date"/>
+            </div>
+            <div>
+                <span>Summary</span><input type="text" ng-model="travel.summary"/>
+            </div>
+            <div>
+                <input type="button" value="Submit" ng-click="saveTravelPlan()"/>
+            </div>
+        </form>
+    </div>
+</div>

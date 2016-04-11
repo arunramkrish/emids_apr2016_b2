@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<title>2 - Customer grid with filter</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+        <script type="text/javascript" src="controller.js"></script>
+        <script type="text/javascript" src="factory.js"></script>
+        <script type="text/javascript" src="service.js"></script>
+        <script type="text/javascript" src="provider.js"></script>
+        
+	</head>
+    <body ng-app="appModule" ng-controller="customerController">
+        <div>
+			<h1>Customers List</h1>
+			<table>
+				<tr ng-repeat="cus in customers|orderBy:'contact'">
+					<td>{{cus.name}}</td>
+					<td>{{cus.address}}</td>
+					<td>{{cus.contact}}</td>
+				</tr>
+				<tr>
+					<td><input type="text" title="Name" ng-model="customer.name"/></td>
+					<td><input type="text" title="Address" ng-model="customer.address"/></td>
+					<td><input type="text" title="Contact" ng-model="customer.contact"/></td>
+				</tr>
+				<tr >
+					<td colspan="3"><input type="button" ng-click="addCustomer()" value="Add"/></td>
+				</tr>
+			</table>
+		</div>
+    </body>
+</html>

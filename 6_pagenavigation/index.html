@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Hello Angular</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+        <script type="text/javascript" src="controllers/page1ctrl.js"></script>
+        <script type="text/javascript" src="controllers/page2ctrl.js"></script>
+        <script type="text/javascript" src="controllers/page3ctrl.js"></script>
+	</head>
+    <body ng-app="appModule">
+        <div ng-view></div>
+    <script>
+        var appModule = angular.module("appModule", ["ngRoute", "page1","page2","page3"]);
+        
+    </script>
+    </body>
+</html>
