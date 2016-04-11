@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>2 - Customer grid with filter</title>
+		<!-- set window.angular -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+	</head>
+	<!-- set the entry point for angular app -->
+	<body ng-app ng-init="customers=[{name:'C1', address:'A1', contact:987659887},{name:'C2', address:'A2', contact:7659887},{name:'C3', address:'A3', contact:87659887}];">
+		<!-- expression -->
+		<h1>Customers List</h1>
+		<div>
+		<span>Enter filter</span><input type="text" ng-Model="customerFilter"/>
+		</div>
+		
+		<table>
+			<tr ng-repeat="cus in customers|orderBy:'contact'|filter:customerFilter">
+				<td>{{cus.name}}</td>
+				<td>{{cus.address}}</td>
+				<td>{{cus.contact}}</td>
+			</tr>
+		</table>
+	<script type="text/javascript">
+		angular.element(document).ready(function() {
+			angular.bootstrap(document.getElementById("myDiv1"));
+			
+			angular.bootstrap(document.getElementById("myDiv2"));
+		});
+	</script>
+	</body>
+</html>

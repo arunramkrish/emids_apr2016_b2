@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Hello Angular</title>
+		<!-- set window.angular -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+	</head>
+	<!-- set the entry point for angular app -->
+	<body >
+		<!-- expression -->
+		<div id="myDiv1">
+		<h1>Welcome to {{greeting}}</h1>
+		
+		<input type="text" ng-Model="greeting"/>
+		</div>
+		
+		<div id="myDiv2">
+		<input type="text" ng-model="greeting"/>
+		
+		<span ng-bind="greeting"></span>
+		
+		<span>{{greeting |lowercase | uppercase }}</span>
+		</div>
+	
+	<script type="text/javascript">
+		angular.element(document).ready(function() {
+			angular.bootstrap(document.getElementById("myDiv1"));
+			
+			angular.bootstrap(document.getElementById("myDiv2"));
+		});
+	</script>
+	</body>
+</html>

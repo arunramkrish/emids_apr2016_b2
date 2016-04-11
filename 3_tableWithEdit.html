@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<title>2 - Customer grid with filter</title>
+		<!-- set window.angular -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+	</head>
+	<!-- set the entry point for angular app -->
+	<body ng-app="appModule" ng-init="customers=[{name:'C1', address:'A1', contact:987659887},{name:'C2', address:'A2', contact:7659887},{name:'C3', address:'A3', contact:87659887}];">
+		<!-- expression -->
+		<div ng-controller="CustomerController">
+			<h1>Customers List</h1>
+			<div>
+			<span>Enter filter</span><input type="text" ng-Model="customerFilter"/>
+			</div>
+			
+			<table>
+				<tr ng-repeat="cus in customers|orderBy:'contact'|filter:customerFilter">
+					<td>{{cus.name}}</td>
+					<td>{{cus.address}}</td>
+					<td>{{cus.contact}}</td>
+				</tr>
+				<tr>
+					<td><input type="text" title="Name" ng-model="customer.name"/></td>
+					<td><input type="text" title="Address" ng-model="customer.address"/></td>
+					<td><input type="text" title="Contact" ng-model="customer.contact"/></td>
+				</tr>
+				<tr >
+					<td colspan="3"><input type="button" ng-click="addCustomer()" value="Add"/></td>
+				</tr>
+			</table>
+		</div>
+	<script type="text/javascript">
+	/*
+		angular.element(document).ready(function() {
+			angular.bootstrap(document.getElementById("myDiv1"));
+			
+			angular.bootstrap(document.getElementById("myDiv2"));
+		});
+		*/
+		var module=angular.module("appModule",[]);
+		
+		module.controller("CustomerController", ["$scope", function(s) {
+			s.addCustomer = function() {
+				s.customers.push(s.customer);
+				s.customer = {};
+			};
+		}]);
+		
+		
+	</script>
+	</body>
+</html>

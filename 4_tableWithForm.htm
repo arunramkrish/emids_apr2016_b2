@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<title>2 - Customer grid with filter</title>
+		<!-- set window.angular -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+	</head>
+	<!-- set the entry point for angular app -->
+	<body ng-app="appModule" ng-init="customers=[{name:'C1', address:'A1', contact:987659887},{name:'C2', address:'A2', contact:7659887},{name:'C3', address:'A3', contact:87659887}];">
+
+	<div ng-controller="CustomerFormController">
+		<form name="customerForm" class="customer-form">
+			<span class="error" ng-show="customerForm.input.$error.required">Enter required fields</span>
+			<span class="error" ng-show="customerForm.input.$error.format">Enter valid error</span>
+
+			<div>
+				<span>Customer Name</span>
+				<input type="text" name="name" ng-model="customer.name" ng-required="true"/>
+			</div>
+			<div>
+				<span>Customer Address</span>
+				<input type="text" name="address" ng-model="customer.address" ng-trim="true"/>
+			</div>
+			<div>
+				<span>Customer Contact</span>
+				<input type="email" name="contact" ng-model="customer.contact" ng-required="true"/>
+			</div>
+			<input type="button" ng-click="addCustomer();" value="Add Customer"/>
+		</form>
+	</div>
+
+	<div ng-controller="CustomerController">
+			<h1>Customers List</h1>
+			<div>
+			<span>Enter filter</span><input type="text" ng-Model="customerFilter"/>
+			</div>
+			
+			<table>
+				<tr ng-repeat="cus in customers|orderBy:'contact'|filter:customerFilter">
+					<td>{{cus.name}}</td>
+					<td>{{cus.address}}</td>
+					<td>{{cus.contact}}</td>
+				</tr>
+				<tr>
+					<td><input type="text" title="Name" ng-model="customer.name"/></td>
+					<td><input type="text" title="Address" ng-model="customer.address"/></td>
+					<td><input type="text" title="Contact" ng-model="customer.contact"/></td>
+				</tr>
+				<tr >
+					<td colspan="3"><input type="button" ng-click="addCustomer()" value="Add"/></td>
+				</tr>
+			</table>
+		</div>
+	<script type="text/javascript">
+	/*
+		angular.element(document).ready(function() {
+			angular.bootstrap(document.getElementById("myDiv1"));
+			
+			angular.bootstrap(document.getElementById("myDiv2"));
+		});
+		*/
+		var module=angular.module("appModule",["formModule"]);
+		function CustomerController(s) {
+			s.addCustomer = function() {
+				s.customers.push(s.customer);
+				s.customer = {};
+			};
+		}
+		CustomerController.$inject=["$scope"];
+		
+		module.controller("CustomerController", CustomerController);
+		
+		var formModule = angular.module("formModule",[]);
+		formModule.controller("CustomerFormController", function($scope) {
+			$scope.addCustomer = function() {
+				$scope.customers.push($scope.customer);
+				$scope.customer = {};
+			};
+		});
+	</script>
+	</body>
+</html>
